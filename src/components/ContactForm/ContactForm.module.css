@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.span {
+  margin-bottom: 10px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.button {
+  max-width: 100px;
+}
