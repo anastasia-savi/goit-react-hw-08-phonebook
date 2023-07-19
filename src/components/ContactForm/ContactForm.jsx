@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
+import TextField from '@mui/material/TextField';
 
 export default class ContactForm extends React.Component {
   state = {
@@ -26,8 +26,10 @@ export default class ContactForm extends React.Component {
     return (
       <form className={css.form} onSubmit={this.handleSubmit}>
         <label className={css.label}>
-          <span className={css.span}>Name</span>
-          <input
+          <TextField
+            id="standard-basic"
+            label="Name"
+            variant="standard"
             type="text"
             value={this.state.name}
             onChange={this.handleInputChange}
@@ -38,8 +40,10 @@ export default class ContactForm extends React.Component {
           />
         </label>
         <label className={css.label}>
-          <span className={css.span}>Number</span>
-          <input
+          <TextField
+            id="standard-basic"
+            label="Phone"
+            variant="standard"
             type="tel"
             value={this.state.number}
             onChange={this.handleInputChange}
@@ -49,14 +53,10 @@ export default class ContactForm extends React.Component {
             required
           />
         </label>
-        <button type="submit" className={css.button}>
+        <button className={css.button} type="submit">
           Add contact
         </button>
       </form>
     );
   }
 }
-
-ContactForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};

@@ -11,15 +11,14 @@ export default class App extends React.Component {
   };
 
   formHandlerSubmit = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-
     if (this.state.contacts.find(cont => cont.name === name)) {
-      alert(`{name} is already in contacts`);
+      alert(`${name} is already in contacts`);
     } else {
+      const contact = {
+        id: nanoid(),
+        name,
+        number,
+      };
       this.setState(prevState => ({
         contacts: [contact, ...prevState.contacts],
       }));
@@ -52,7 +51,10 @@ export default class App extends React.Component {
         </Section>
         <Section title="Contacts">
           <Filter value={this.state.filter} onChange={this.changeFilter} />
-          <ContactList contacts={visibleContacts} delete={this.deleteContact} />
+          <ContactList
+            contacts={visibleContacts}
+            deleteById={this.deleteContact}
+          />
         </Section>
       </div>
     );
