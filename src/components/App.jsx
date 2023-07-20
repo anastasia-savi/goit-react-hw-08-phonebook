@@ -25,6 +25,20 @@ export default class App extends React.Component {
     }
   };
 
+  componentDidMount() {
+    const saveContacts = localStorage.getItem('contacts');
+    const parse = JSON.parse(saveContacts);
+    if (parse) {
+      this.setState({ contacts: parse });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };
@@ -41,20 +55,6 @@ export default class App extends React.Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
-
-  componentDidMount() {
-    const saveContacts = localStorage.getItem('contacts');
-    const parse = JSON.parse(saveContacts);
-    if (parse) {
-      this.setState({ contacts: parse });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
 
   render() {
     const visibleContacts = this.getFiltred();
