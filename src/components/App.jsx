@@ -39,6 +39,9 @@ export default class App extends React.Component {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
+    if(this.state.contacts.length === 0){
+      localStorage.removeItem('contacts')
+    }
   }
 
   changeFilter = event => {
