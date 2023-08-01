@@ -8,9 +8,9 @@ import Filter from './Filter/Filter';
 const App = () => {
 
 const [contacts, setContacts] = useState([]);
-const [filter, setFiler] = useState('');
+const [filter, setFilter] = useState('');
 
- const formHandlerSubmit = ({ name, number }) => {
+ const formHandlerSubmit = (name, number) => {
     if (contacts.find(cont => cont.name === name)) {
       alert(`${name} is already in contacts`);
     } else {
@@ -40,10 +40,12 @@ const [filter, setFiler] = useState('');
   }, [contacts])
 
   const changeFilter = event => {
-    setFiler(event.currentTarget.value);
+
+    setFilter(event.currentTarget.value);
   };
 
   const getFiltred = () => {
+
     const normFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normFilter)
@@ -52,7 +54,7 @@ const [filter, setFiler] = useState('');
 
   const deleteContact = contactId => {
     setContacts(state =>
-      state.filter(contact => contact.id !== contactId))
+      contacts.filter(contact => contact.id !== contactId))
   };
 
     const visibleContacts = getFiltred();

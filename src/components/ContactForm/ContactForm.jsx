@@ -1,38 +1,44 @@
-import React from 'react';
+import {useState} from 'react';
 import css from './ContactForm.module.css';
 import TextField from '@mui/material/TextField';
 
-export default class ContactForm extends React.Component {
-  state = {
-    name: '',
-    number: '',
+export default function ContactForm ({onSubmit}){
+
+const [name, setName] = useState('');
+const [number, setNumber] = useState('');
+
+   const handleInputChange = event => {
+
+    switch(event.currentTarget.name){
+      case 'name': setName(event.currentTarget.value);
+      break;
+      case 'number': setNumber(event.currentTarget.value);
+      break;
+      default: console.log('Sorry, wrong name')
+    }
   };
 
-  handleInputChange = event => {
-    this.setState({ [event.currentTarget.name]: event.currentTarget.value });
-  };
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
+    onSubmit(name, number);
+    reset();
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
-  render() {
     return (
-      <form className={css.form} onSubmit={this.handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <label className={css.label}>
           <TextField
             id="standard-basic"
             label="Name"
             variant="standard"
             type="text"
-            value={this.state.name}
-            onChange={this.handleInputChange}
+            value={name}
+            onChange={handleInputChange}
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+((['-][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -45,8 +51,8 @@ export default class ContactForm extends React.Component {
             label="Phone"
             variant="standard"
             type="tel"
-            value={this.state.number}
-            onChange={this.handleInputChange}
+            value={number}
+            onChange={handleInputChange}
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -59,4 +65,3 @@ export default class ContactForm extends React.Component {
       </form>
     );
   }
-}
