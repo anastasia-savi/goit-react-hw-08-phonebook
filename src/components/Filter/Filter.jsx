@@ -1,9 +1,18 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import PropTypes from 'prop-types';
 import css from './Filter.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterContacts } from 'redux/filterSlice';
+import { getFilter } from 'redux/selectors';
 
-const Filter = ({ filter, onChange }) => {
+const Filter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+  const changeFilter = event => {
+    dispatch(filterContacts(event.currentTarget.value));
+    console.log(event.currentTarget.value );
+  };
+
   return (
     <label className={css.label}>
       <TextField
@@ -12,15 +21,10 @@ const Filter = ({ filter, onChange }) => {
         variant="standard"
         type="text"
         value={filter}
-        onChange={onChange}
+        onChange={changeFilter}
       />
     </label>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default Filter;
