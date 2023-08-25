@@ -2,8 +2,7 @@ import { useState } from 'react';
 import css from './ContactForm.module.css';
 import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
-import { saveContact } from 'redux/contactSlice';
-import { nanoid } from 'nanoid/non-secure';
+import { addContact } from 'redux/operations';
 import { getContact } from 'redux/selectors';
 
 export default function ContactForm({ onSubmit }) {
@@ -36,13 +35,8 @@ export default function ContactForm({ onSubmit }) {
     if (contacts.find(cont => cont.name === name)) {
       alert(`${name} is already in contacts`);
     } else {
-      let contact = {
-        id: nanoid(),
-        name,
-        number,
-      };
 
-      dispatch(saveContact(contact));
+      dispatch(addContact({ name, phone: number }));
     }
     reset();
   };
