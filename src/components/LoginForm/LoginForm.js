@@ -23,6 +23,7 @@ export const LoginForm = () => {
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
         <TextField
+          style={{ minWidth: '295px' }}
           type="email"
           name="email"
           id="outlined-basic"
@@ -32,6 +33,7 @@ export const LoginForm = () => {
       </label>
       <label className={css.label}>
         <TextField
+          style={{ minWidth: '295px' }}
           type="password"
           name="password"
           id="outlined-basic"
@@ -40,10 +42,10 @@ export const LoginForm = () => {
         />
       </label>
       <Button
+        style={{ minWidth: '295px' }}
         type="submit"
         variant="outlined"
         className={css.button}
-        style={{ minWidth: '195px' }}
       >
         Log In
       </Button>

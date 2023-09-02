@@ -24,6 +24,7 @@ export const RegisterForm = () => {
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
         <TextField
+          style={{ minWidth: '295px' }}
           type="text"
           name="name"
           id="outlined-basic"
@@ -33,6 +34,7 @@ export const RegisterForm = () => {
       </label>
       <label className={css.label}>
         <TextField
+          style={{ minWidth: '295px' }}
           type="email"
           name="email"
           id="outlined-basic"
@@ -42,6 +44,7 @@ export const RegisterForm = () => {
       </label>
       <label className={css.label}>
         <TextField
+          style={{ minWidth: '295px' }}
           type="password"
           name="password"
           id="outlined-basic"
@@ -53,7 +56,7 @@ export const RegisterForm = () => {
         type="submit"
         variant="outlined"
         className={css.button}
-        style={{ minWidth: '195px' }}
+        style={{ minWidth: '295px' }}
       >
         Register
       </Button>
