@@ -3,13 +3,13 @@ import css from './ContactForm.module.css';
 import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
-import { getContact } from 'redux/selectors';
+import { selectContact } from 'redux/selectors';
 
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(getContact);
+  const contacts = useSelector(selectContact);
 
   const handleInputChange = event => {
     switch (event.currentTarget.name) {

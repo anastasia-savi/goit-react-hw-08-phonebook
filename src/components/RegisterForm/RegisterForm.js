@@ -1,17 +1,18 @@
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/authOperations';
-import css from './LoginForm.module.css';
+import { register } from 'redux/authOperations';
+import css from './RegisterForm.module.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      logIn({
+      register({
+        name: form.elements.name.value,
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
@@ -21,6 +22,15 @@ export const LoginForm = () => {
 
   return (
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+      <label className={css.label}>
+        <TextField
+          type="text"
+          name="name"
+          id="outlined-basic"
+          label="Username"
+          variant="outlined"
+        />
+      </label>
       <label className={css.label}>
         <TextField
           type="email"
@@ -45,7 +55,7 @@ export const LoginForm = () => {
         className={css.button}
         style={{ minWidth: '195px' }}
       >
-        Log In
+        Register
       </Button>
     </form>
   );
