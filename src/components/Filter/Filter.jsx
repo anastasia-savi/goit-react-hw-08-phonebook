@@ -15,6 +15,7 @@ const Filter = () => {
   return (
     <label className={css.label}>
       <TextField
+        style={{ minWidth: '295px' }}
         id="standard-basic"
         label="Find contacts by name"
         variant="standard"

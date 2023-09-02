@@ -22,7 +22,7 @@ export default function Contacts() {
         <title>Your contacts</title>
       </HelmetProvider>
       <ContactForm />
-      <Filter/>
+      <Filter />
       <div>{isLoading && 'Request in progress...'}</div>
       <ContactList />
     </>

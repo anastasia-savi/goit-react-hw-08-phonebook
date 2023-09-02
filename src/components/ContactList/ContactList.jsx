@@ -3,6 +3,7 @@ import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContact, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
+import Button from '@mui/material/Button';
 
 const ContactList = () => {
   const contacts = useSelector(selectContact);
@@ -25,17 +26,19 @@ const ContactList = () => {
   return (
     <ol className={css.contactList}>
       {visibleContacts.map(({ id, name, number }) => (
-        <li className={css.contact} key={id}>
-          <p>
+        <li className={css.item} key={id}>
+          <p className={css.contact}>
             {name}: {number}
           </p>
-          <button
+          <Button
+            style={{ height: '30px' }}
             type="button"
+            variant="outlined"
             className={css.button}
             onClick={() => deleteContactt(id)}
           >
             Delete
-          </button>
+          </Button>
         </li>
       ))}
     </ol>

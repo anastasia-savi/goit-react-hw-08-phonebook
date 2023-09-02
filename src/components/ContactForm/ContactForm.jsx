@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContact } from 'redux/selectors';
+import Button from '@mui/material/Button';
 
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
@@ -35,7 +36,6 @@ export default function ContactForm({ onSubmit }) {
     if (contacts.find(cont => cont.name === name)) {
       alert(`${name} is already in contacts`);
     } else {
-
       dispatch(addContact({ name, number }));
     }
     reset();
@@ -50,9 +50,10 @@ export default function ContactForm({ onSubmit }) {
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>
         <TextField
-          id="standard-basic"
+          style={{ minWidth: '295px' }}
+          id="outlined-basic"
           label="Name"
-          variant="standard"
+          variant="outlined"
           type="text"
           value={name}
           onChange={handleInputChange}
@@ -64,9 +65,10 @@ export default function ContactForm({ onSubmit }) {
       </label>
       <label className={css.label}>
         <TextField
-          id="standard-basic"
+          style={{ minWidth: '295px' }}
+          id="outlined-basic"
           label="Phone"
-          variant="standard"
+          variant="outlined"
           type="tel"
           value={number}
           onChange={handleInputChange}
@@ -76,9 +78,14 @@ export default function ContactForm({ onSubmit }) {
           required
         />
       </label>
-      <button className={css.button} type="submit">
+      <Button
+        className={css.button}
+        type="submit"
+        variant="outlined"
+        style={{ minWidth: '295px' }}
+      >
         Add contact
-      </button>
+      </Button>
     </form>
   );
 }
