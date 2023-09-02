@@ -36,7 +36,7 @@ export default function ContactForm({ onSubmit }) {
       alert(`${name} is already in contacts`);
     } else {
 
-      dispatch(addContact({ name, phone: number }));
+      dispatch(addContact({ name, number }));
     }
     reset();
   };
